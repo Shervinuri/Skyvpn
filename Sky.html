@@ -37,7 +37,7 @@
   scene.add(new THREE.AmbientLight(0xaaaaaa));
 
   const loader = new GLTFLoader();
-  loader.load('SkyVPN_3DLogo.glb', function (gltf) {
+  loader.load('https://raw.githubusercontent.com/Shervinuri/Skyvpn/refs/heads/main/SkyVPN_3DLogo.glb', function (gltf) {
     scene.add(gltf.scene);
   }, undefined, function (error) {
     console.error('خطا در بارگذاری مدل:', error);
