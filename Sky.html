@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>3D SkyVPN Logo</title>
+  <title>SkyVPN 3D Logo</title>
   <style>
-    body { margin: 0; background: #000; overflow: hidden; }
+    body { margin: 0; background: black; overflow: hidden; }
     canvas { display: block; }
   </style>
 </head>
@@ -17,36 +17,34 @@
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
 
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
-  camera.position.set(0, 0, 4);
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 5);
 
-  const renderer = new THREE.WebGLRenderer({antialias: true});
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
-  controls.enablePan = false;
   controls.autoRotate = true;
-  controls.autoRotateSpeed = 1;
+  controls.enablePan = false;
   controls.maxPolarAngle = Math.PI / 2;
   controls.minPolarAngle = Math.PI / 2;
 
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(5, 5, 5);
   scene.add(light);
-  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  scene.add(new THREE.AmbientLight(0xaaaaaa));
 
   const loader = new GLTFLoader();
-  loader.load('skyvpn.glb', function(gltf){
-    gltf.scene.scale.set(1,1,1);
+  loader.load('SkyVPN_3DLogo.glb', function (gltf) {
     scene.add(gltf.scene);
-  }, undefined, function(error){
-    console.error('Error loading model:', error);
+  }, undefined, function (error) {
+    console.error('خطا در بارگذاری مدل:', error);
   });
 
   window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
@@ -56,6 +54,7 @@
     controls.update();
     renderer.render(scene, camera);
   }
+
   animate();
 </script>
 </body>
